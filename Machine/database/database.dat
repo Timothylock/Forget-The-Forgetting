@@ -1,0 +1,1 @@
+{'water': {'last_posX': 100, 'last_posY': 100, 'should_take': True}, 'tim': {'last_posX': 5, 'last_posY': 5, 'should_take': True}, 'cup': {'last_posX': 50, 'last_posY': 50, 'should_take': True}}
