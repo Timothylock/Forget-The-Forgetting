@@ -8,7 +8,7 @@ def doRequest():
 
     # Send the file up to the FTP server
     print ("Upload picture start")
-    ftp = FTP_TLS('individual.utoronto.ca', 'USER','PASSWORD')
+    ftp = FTP_TLS('individual.utoronto.ca', 'USER','PASSS')
     file = open('data.jpg','rb')                  # file to send
     ftp.storbinary('STOR data.jpg', file)     # send the file
     file.close()                                    # close file and FTP
