@@ -30,19 +30,19 @@ while True:
         sys.exit()
 
     # Call Detection
-    list_gone = 
+    list_gone = imgProc.find("img1.jpg", "img2.jpg")
+    os.remove("data.jpg")
+    os.rename("1.jpg", "data.jpg")
     taken = []
     should_get = db.getListShouldTake()
     forgot = []
     # Item processing
-    for i in range(list):
+    for i in range(list_gone):
         x = db.getObjectsInArea(list[i][0], list[i][1], list[i][2], list[i][3])
         if len(x) == 1:
             for item in x:
                 taken.append(str(item))
         else:
-            os.remove("ObjRecognition/data.jpg")
-            os.rename("path/to/current/file.foo", "ObjRecognition/data.jpg")
             x = recognize.doRequest()
             taken.append(x)
     #Check if all items taken
@@ -51,5 +51,6 @@ while True:
             forgot.append(str(item))
 
     # Send out Twillio
+    print(str(forgot))
     
     
