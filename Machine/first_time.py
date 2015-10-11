@@ -1,9 +1,10 @@
 import sys
+import os
 import time
 import database.database as db
 import NestInput.nestCom as cam
 import ImageProc.im_proc as imgProc
-import Objcognition.imageRecognition as recog
+import ObjRecognition.imageRecognition as recog
 
 # Database creation
 print("======== First-Time Run ========")
@@ -25,7 +26,7 @@ print("\n\nPlease put your everyday items into the frame. The camera will take a
 input= raw_input("Press Enter to continue...")
 if (cam.pullImage("img1") == 0):
     print("Picture taken...Processing Please wait 15 sec")
-    time.sleep(15)
+    time.sleep(0)
 else:
     print("Unexpected error. Check your internet connection and make sure your camera is connected.")
     input= raw_input("Press Enter to exit...")
@@ -41,12 +42,11 @@ else:
     sys.exit()
 
 # Send to learn
-os.rename("img1.jpg", "ImageProc/img1.jpg")
-os.rename("img1.jpg", "ImageProc/img2.jpg")
 x = imgProc.find("img1.jpg", "img2.jpg")
-os.remove("ImageProc/img1.jpg")
-os.remove("ImageProc/img2.jpg")
-os.rename("ImageProc/1.jpg", "ObjRecognition/data.jpg")
+os.remove("data.jpg")
+os.rename("1.jpg", "data.jpg")
 db.storeObject(recog.doRequest(), x[0], x[1], x[2], x[3])
+
+Sys.exit()
 
 

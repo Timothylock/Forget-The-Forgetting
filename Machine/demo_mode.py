@@ -1,13 +1,15 @@
 import sys
+import os
 import database.database as db
 import NestInput.nestCom as cam
+import ImageProc.im_proc as imgProc
 import ObjRecognition.imageRecognition as recognize
 
 print("=======================")
 print("       Demo Mode       ")
 print("=======================")
 print("")
-import first_time
+#import first_time
 print("-----------")
 while True:
     # Take first picture
@@ -28,7 +30,7 @@ while True:
         sys.exit()
 
     # Call Detection
-    list_gone =
+    list_gone = 
     taken = []
     should_get = db.getListShouldTake()
     forgot = []

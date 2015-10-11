@@ -5,8 +5,8 @@ from numpy import sum, average
 import numpy as np
 
 def find( fimg1, fimg2):
-    file1 = cv2.imread("img1.jpg", 0)
-    file2 = cv2.imread("img2.jpg", 0)
+    file1 = cv2.imread(fimg1, 0)
+    file2 = cv2.imread(fimg2, 0)
     fileb1 = gblurring(file1)
     fileb2 = gblurring(file2)
     file1m = work(fileb1)
@@ -16,8 +16,9 @@ def find( fimg1, fimg2):
     imageofawesomeness = compare_images(file1m, file2m)
     cv2.imwrite ("diff.jpg", imageofawesomeness)
     print("image comparing finished")
-
-
+    x, y, w, h = searchchangepixel('diff.jpg')
+    crop(fimg1, x, y, w, h)
+    
     #n_m, n_0 = compare_images(img1, img2)
     #print "Manhattan norm:", n_m, "/ per pixel:", n_m/img1.size
     #print "Zero norm:", n_0, "/ per pixel:", n_0*1.0/img1.size
@@ -83,9 +84,6 @@ def median (filename):
     cv2.imwrite('median.jpg', imageblur)
     return imageblur
 
-def contourfindermain():
-    x, y, w, h = searchchangepixel('diff.jpg')
-    crop("img1.jpg", x, y, w, h)
     
     
 def searchchangepixel (resultant_image):
@@ -106,6 +104,7 @@ def searchchangepixel (resultant_image):
     x,y,w,h = cv2.boundingRect(cnt)
     cv2.rectangle(img, (x,y), (x+w, y+h), (0,255,0),2)
     cv2.imwrite("something.jpg", img)
+    listrequest = [0,0,0,0]
     listrequest[0] = x
     listrequest[1] = y
     listrequest[2] = x+w
@@ -121,6 +120,6 @@ def crop(filename, x, y, w, h):
 
 
 if __name__ == "__main__":
-    main()
+    find(0,0)
 
 
