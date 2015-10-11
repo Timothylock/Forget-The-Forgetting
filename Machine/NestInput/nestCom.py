@@ -13,11 +13,11 @@ def pullGIF():
     urllib.urlretrieve(data["cameras"][deviceID]["last_event"]["animated_image_url"], "nest_animated.gif")
     return 0
 
-def pullImage():
+def pullImage(file):
     data = getJSON()
     if (data == "ERR") or ((data["cameras"][deviceID]["is_online"]) == False):
         return -1
-    urllib.urlretrieve(data["cameras"][deviceID]["last_event"]["image_url"], "nest_image.jpg")
+    urllib.urlretrieve(data["cameras"][deviceID]["last_event"]["image_url"], file + ".jpg")
     return 0
 
 def hasMotion():

@@ -46,13 +46,15 @@ def storeObject(name, x, y, should_take): # Store an object into the database (s
 
 def generateNewDatabase(): # Generates a new database
     file_object = open('database.dat', 'w')
-    file_object.write({})
+    #file_object.write({})
     file_object.close()
 
 def populateVariable(): # Populates the temp database required for operation.
     try:
         file_object = open('database.dat', 'r')
     except:
+        generateNewDatabase()
+        file_object = open('database.dat', 'r')
         print (["ERROR"])
     database = file_object.read()
     file_object.close()
@@ -63,4 +65,3 @@ def writeChanges(data): # Writes changes to database file
     file_object.write(str(data))
     file_object.close()
 
-print getObject("Tim")
