@@ -12,8 +12,5 @@ def sendSMS(recipient, text = ''):
             from_ = "+12018993782", 
             body = text,  
     )
-    print("It Works!")
+    print("Sent SMS")
     return 1;
-
-if __name__ == "__main__":
-    sendSMS("+1 647-486-9484", "It Works!")

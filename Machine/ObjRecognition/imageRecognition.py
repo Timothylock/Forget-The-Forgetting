@@ -44,7 +44,7 @@ def doRequest():
         # you may get some response with status 'not completed' for about some times before getting the final result
         reqTimes = 20
         while reqTimes > 0:
-            time.sleep(10)
+            time.sleep(3)
             try:
                 response = requests.get(reqUrlB + token, headers=headers)
             except Exception, e:

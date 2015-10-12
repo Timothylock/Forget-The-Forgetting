@@ -18,6 +18,7 @@ def find( fimg1, fimg2):
     print("image comparing finished")
     x, y, w, h = searchchangepixel('diff.jpg')
     crop(fimg1, x, y, w, h)
+    return[[0,0,0,0]]
     
     #n_m, n_0 = compare_images(img1, img2)
     #print "Manhattan norm:", n_m, "/ per pixel:", n_m/img1.size
@@ -94,7 +95,7 @@ def searchchangepixel (resultant_image):
     #print (len(cv2.findContours(thresh, 1, 2)))
     uglyvar, contours, hierarchy = cv2.findContours(thresh, 1, 2)
     x = []
-    for i in range(1000):
+    for i in range(len(contours)):
         cnt = contours[i]
         print(cv2.contourArea(cnt))
         x.append(cv2.contourArea(cnt))

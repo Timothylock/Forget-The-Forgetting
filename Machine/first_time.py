@@ -6,8 +6,9 @@ import database.database as db
 import ImageProc.im_proc as imgProc
 import ObjRecognition.imageRecognition as recog
 import cv2
+import twillio.sendTwillio as twi
 
-camera_port = 0
+camera_port = 1
 camera = cv2.VideoCapture(camera_port)
 camera.set(3,1920)
 camera.set(4,1080)
@@ -34,7 +35,7 @@ time.sleep(1)
 return_value, image = camera.read()
 cv2.imwrite("img1.jpg", image)
 del(camera)
-camera_port = 0
+camera_port = 1
 camera = cv2.VideoCapture(camera_port)
 camera.set(3,1920)
 camera.set(4,1080)
@@ -57,7 +58,47 @@ except:
 os.rename("1.jpg", "data.jpg")
 res = recog.doRequest()
 print(res)
-db.storeObject(res, -1, -1, True)
+twi.sendSMS("+1 647-486-9484", "Trained!")
+#db.storeObject(res, -1, -1, True)
+while True:
+        # First Picture Cal
+    print("\n\ndebug1")
+    input= raw_input("Press Enter to continue...")
+    camera_port = 1
+    camera = cv2.VideoCapture(camera_port)
+    camera.set(3,1920)
+    camera.set(4,1080)
+    time.sleep(1)
+    return_value, image = camera.read()
+    cv2.imwrite("img1.jpg", image)
+    time.sleep(1)
+    return_value, image = camera.read()
+    cv2.imwrite("img1.jpg", image)
+    del(camera)
+    camera_port = 1
+    camera = cv2.VideoCapture(camera_port)
+    camera.set(3,1920)
+    camera.set(4,1080)
+    time.sleep(1)
+    print("\n\ndebug2")
+    print("Don't worry if you forget something. The system will learn over the next week!")
+    input= raw_input("Press Enter to continue...")
+    return_value, image = camera.read()
+    cv2.imwrite("img2.jpg", image)
+    return_value, image = camera.read()
+    cv2.imwrite("img2.jpg", image)
+    del(camera)
+
+    # Send to learn
+    x = imgProc.find("img1.jpg", "img2.jpg")
+    try:
+        os.remove("data.jpg")
+    except:
+        pass
+    os.rename("1.jpg", "data.jpg")
+    res = recog.doRequest()
+    print(res)
+    twi.sendSMS("+1 647-486-9484", "It looks like your forgot to bring the pen!")
 
 
 

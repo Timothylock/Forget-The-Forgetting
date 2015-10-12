@@ -9,7 +9,7 @@ print("=======================")
 print("       Demo Mode       ")
 print("=======================")
 print("")
-#import first_time
+import first_time
 print("-----------")
 while True:
     # Take first picture
